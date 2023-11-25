@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+   {% for carrera in carreras %}
+       <h2>{{ carrera.nombre }}</h2>
+        <p class="lead mb-0">
+            Comisión N° {{ carrera.comision }}
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}
