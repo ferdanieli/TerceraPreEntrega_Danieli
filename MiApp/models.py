@@ -22,4 +22,4 @@ class Materia(models.Model):
     puntos = models.IntegerField()
 
     def __str__(self):
-        return f" {self.nombre} {self.puntos}"
+        return f" {self.nombre} - {self.puntos} puntos"
