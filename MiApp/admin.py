@@ -1,3 +1,6 @@
 from django.contrib import admin
+from MiApp.models import Carrera, Director, Materia
 
-# Register your models here.
+admin.site.register(Carrera)
+admin.site.register(Director)
+admin.site.register(Materia)

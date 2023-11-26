@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
 {% block cambio %}
+<div>
+    <form action="/app/buscar" method="GET">
+
+        {{ form.as_p }}
+
+        <h6><input type="submit" value="Buscar"></h6>
+
+    </form>
+</div>
+
    {% for carrera in carreras %}
-       <h2>{{ carrera.nombre }}</h2>
+       <h4>{{ carrera.nombre }}</h4>
         <p class="lead mb-0">
             Comisión N° {{ carrera.comision }}
         </p>
