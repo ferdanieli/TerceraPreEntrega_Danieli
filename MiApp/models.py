@@ -3,7 +3,7 @@ from django.db import models
 
 class Carrera(models.Model):
     nombre = models.CharField(max_length=50)
-    comision = models.IntegerField(unique= True)
+    comision = models.IntegerField(unique=True)
 
     def __str__(self):
         return f" {self.nombre} - Comisión: {self.comision}"

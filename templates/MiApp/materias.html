@@ -2,7 +2,7 @@
 
 {% block cambio %}
 <div>
-    <form action="/app/buscar" method="GET">
+    <form action="/app/mostrar" method="GET">
 
         {{ form.as_p }}
 
@@ -11,10 +11,10 @@
     </form>
 </div>
 
-   {% for carrera in carreras %}
-       <h5>{{ carrera.nombre }}</h5>
+   {% for materia in materias %}
+       <h5>{{ materia.nombre }}</h5>
         <p class="lead mb-0">
-       <h6>Comisión N° {{ carrera.comision }}</h6>
+       <h6>Puntos {{ materia.puntos }}</h6>
         </p>
         <hr>
     {% endfor %}
