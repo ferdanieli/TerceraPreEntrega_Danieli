@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
+from django.views.generic import CreateView, DetailView
 
-from MiApp.models import Carrera, Director, Materia
-from MiApp.forms import CarreraForm, BuscarCarreraForm, DirectorForm, BuscarDirectorForm, MateriaForm, BuscarMateriaForm
+from MiApp.forms import CarreraForm, BuscarCarreraForm, DirectorForm, BuscarDirectorForm, MateriaForm, \
+    BuscarMateriaForm, ComentarioForm
+from MiApp.models import Carrera, Director, Materia, Commentarios
 
 
 def mostrar_carreras(request):
@@ -14,11 +16,28 @@ def mostrar_carreras(request):
 
     return render(request, 'MiApp/carreras.html', contexto)
 
-def crear_carrera(request):
-    carrera = Carrera(nombre= "Logistica", comision= 12023)
-    carrera.save()
+class CrearCarrera(CreateView):
+    model = Carrera
+    success_url = "/app/carreras/"
+    template_name = "MiApp/crear_carrera.html"
+    fields = "__all__"
 
-    return redirect("/app/carreras/")
+class DetalleCarrera(DetailView):
+    model = Carrera
+    template_name = "MiApp/detalle_carrera.html"
+
+
+def comentario(request):
+    formulario = ComentarioForm(request.POST)
+
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
+        carrera = Carrera.objects.get(id= informacion["carrera"])
+        comentario_crear = Commentarios(usuario= request.user, carrera= carrera, comentario= informacion["comentario"] )
+
+        comentario_crear.save()
+
+        return redirect("/app/carreras/")
 
 def crear_carrera_form(request):
 

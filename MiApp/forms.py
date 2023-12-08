@@ -1,8 +1,18 @@
 from django import forms
 
-class CarreraForm(forms.Form):
-    nombre = forms.CharField()
-    comisión = forms.IntegerField()
+from MiApp.models import Carrera, Commentarios
+
+
+class CarreraForm(forms.ModelForm):
+    class Meta:
+        model = Carrera
+        fields = "__all__"
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Commentarios
+        fields = ("usuario", "carrera", "comentario")
+
 
 
 class BuscarCarreraForm(forms.Form):
